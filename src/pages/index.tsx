@@ -38,7 +38,7 @@ const Home: NextPage = () => {
               List of Users
             </h1>
             {
-              // If the user is not logged in, show the login button
+              // If the user is not logged in, show the login button.
               !session ? (
                 <div className="flex w-full justify-end space-x-4">
                   <button
