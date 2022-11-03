@@ -11,7 +11,7 @@ const Home: NextPage = () => {
     trpc.users.getAll.useQuery();
 
   // Handle the session
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   // Handle the login button
   const handleLogin = async () => {

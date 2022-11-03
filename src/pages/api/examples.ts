@@ -1,5 +1,6 @@
 import { type NextApiRequest, type NextApiResponse } from "next";
 
+// skipcq: JS-0356
 import { prisma } from "../../server/db/client";
 
 // skipcq: JS-0116
