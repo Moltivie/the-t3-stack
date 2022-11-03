@@ -20,7 +20,7 @@ export const authOptions: NextAuthOptions = {
           select: { role: true },
         });
 
-        session.user.role = userRole!.role;
+        session.user.role = userRole?.role || 1;
       }
       return session;
     },

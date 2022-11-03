@@ -36,9 +36,9 @@ export default function Index() {
     country.trim() === "" &&
     companyName.trim() === ""
   ) {
-    setUsername(dataUserDetails![0]!.basicInfo.name);
-    setCountry(dataUserDetails![0]!.country);
-    setcompanyName(dataUserDetails![0]!.company_name);
+    setUsername(dataUserDetails?.[0]?.basicInfo.name || "No name");
+    setCountry(dataUserDetails?.[0]?.country || "No country");
+    setcompanyName(dataUserDetails?.[0]?.company_name || "No company name");
   }
 
   // Get the mutation to update the user details
@@ -47,14 +47,14 @@ export default function Index() {
   const handleUpdate = async () => {
     // Update the user details
     const hasBeenModified = await mutationUpdate.mutateAsync({
-      id: dataUserDetails![0]!.id.toString(),
+      id: dataUserDetails?.[0]?.id.toString() || "0",
       country: country,
-      parentId: dataUserDetails![0]!.parentId.toString(),
+      parentId: dataUserDetails?.[0]?.parentId.toString() || "0",
       company_name: companyName,
       basicInfo: {
         name: username,
-        id: dataUserDetails![0]!.basicInfo.id.toString(),
-        avatar: dataUserDetails![0]!.basicInfo.avatar,
+        id: dataUserDetails?.[0]?.basicInfo.id.toString() || "0",
+        avatar: dataUserDetails?.[0]?.basicInfo.avatar || "_blank",
       },
     });
 
@@ -70,7 +70,7 @@ export default function Index() {
   const handleDelete = async () => {
     // Delete the user
     const hasBeenDeleted = await mutationDelete.mutateAsync({
-      id: dataUserDetails![0]!.id.toString(),
+      id: dataUserDetails?.[0]?.id.toString() || "0",
     });
 
     // If the user has been deleted, redirect to the home page
@@ -128,12 +128,14 @@ export default function Index() {
                 <div className="flex w-full items-center justify-end space-x-4">
                   <Image
                     className="rounded-full border border-gray-200 transition duration-200 hover:scale-105"
-                    src={session!.user!.image!}
+                    src={session?.user?.image || "_blank"}
                     width={50}
                     height={50}
                     alt={"avatar"}
                   />
-                  <h3 className="text-gray-200">{session.user?.name}</h3>
+                  <h3 className="text-gray-200">
+                    {session.user?.name || "No name"}
+                  </h3>
                   <button
                     type="button"
                     className="rounded-md border border-gray-200 bg-transparent p-2 font-semibold text-gray-200 transition duration-200 hover:bg-gray-200 hover:text-gray-800"
@@ -160,30 +162,30 @@ export default function Index() {
               <ul className="flex flex-col items-center justify-center">
                 {
                   <li
-                    key={dataUserDetails![0]!.id}
+                    key={dataUserDetails?.[0]?.id || 0}
                     className="my-2 flex w-full items-center gap-5 rounded-md bg-gray-700 p-4 transition duration-100"
                   >
                     <Image
                       className="transtition rounded-full border-2 border-gray-200 duration-300"
-                      src={dataUserDetails![0]!.basicInfo.avatar}
+                      src={dataUserDetails?.[0]?.basicInfo.avatar || "_blank"}
                       width={50}
                       height={50}
-                      alt={`avatar-${dataUserDetails![0]!.id}`}
+                      alt={`avatar-${dataUserDetails?.[0]?.id || 0}`}
                     />
                     <p className="w-full whitespace-nowrap text-center text-2xl text-gray-200">
-                      {dataUserDetails![0]!.basicInfo.name}
+                      {dataUserDetails?.[0]?.basicInfo.name || "No name"}
                     </p>
                     <div className="h-6 border-[0.5px] border-gray-300" />
                     <p className="w-full whitespace-nowrap text-center text-xl text-gray-400">
-                      {dataUserDetails![0]?.country}
+                      {dataUserDetails?.[0]?.country || "No country"}
                     </p>
                     <div className="h-6 border-[0.5px] border-gray-300" />
                     <p className="w-full whitespace-nowrap text-center text-xl text-gray-400">
-                      {dataUserDetails![0]?.company_name}
+                      {dataUserDetails?.[0]?.company_name || "No company"}
                     </p>
                     {
                       // If the user is logged in and is has the rights, show the edit and delete buttons
-                      session && session.user!.role > 1 ? (
+                      session && (session.user?.role || 1 > 1) ? (
                         <>
                           <div className="h-6 border-[0.5px] border-gray-300" />
                           <button
@@ -231,7 +233,7 @@ export default function Index() {
       </main>
       {
         // Modal
-        modal && session && session.user!.role > 1 && (
+        modal && session && (session.user?.role || 1 > 1) && (
           <div className="absolute top-1/2 left-1/2 z-10 h-screen w-screen -translate-x-1/2 -translate-y-1/2 transform bg-black/60">
             <div className="flex h-full w-full items-center justify-center">
               <div className="flex h-fit w-96 flex-col items-center gap-y-4 rounded bg-gray-200 p-4 text-gray-600">
@@ -295,9 +297,9 @@ export default function Index() {
                     onClick={() => {
                       // Reset modal handlers states
                       setModal(false);
-                      setUsername(dataUserDetails![0]!.basicInfo.name);
-                      setCountry(dataUserDetails![0]!.country);
-                      setcompanyName(dataUserDetails![0]!.company_name);
+                      setUsername(dataUserDetails?.[0]?.basicInfo.name || "");
+                      setCountry(dataUserDetails?.[0]?.country || "");
+                      setcompanyName(dataUserDetails?.[0]?.company_name || "");
                     }}
                     disabled={mutationUpdate.isLoading}
                   >
