@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { truncateString } from "../../../utils/functions";
+import { sanitizeString, truncateString } from "../../../utils/functions";
 import { protectedProcedure, publicProcedure, router } from "../trpc";
 
 type User = {
@@ -30,7 +30,7 @@ export const usersRouter = router({
     .input(z.object({ id: z.number() }))
     .query(async ({ input }) => {
       const userDetails: UserDetails[] = await fetch(
-        `${BASE_URL}/users/${input.id}/details`
+        `${BASE_URL}/users/${sanitizeString(input.id)}/details`
       ).then((res) => res.json());
 
       return userDetails;
