@@ -48,6 +48,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  role         Int      @default(1)
 }
 
 model VerificationToken {
