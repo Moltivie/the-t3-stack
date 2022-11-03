@@ -16,21 +16,21 @@ type UserDetails = {
   basicInfo: User;
 };
 
-export const usersRouter = router({
-  getAll: publicProcedure
-    // .input(z.object({ text: z.string().nullish() }).nullish())
-    .query(async () => {
-      const usersData: User[] = await fetch(
-        "https://635fbe57ca0fe3c21aa35cc5.mockapi.io/users"
-      ).then((res) => res.json());
+const BASE_URL = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
-      return usersData;
-    }),
+export const usersRouter = router({
+  getAll: publicProcedure.query(async () => {
+    const usersData: User[] = await fetch(`${BASE_URL}/users`).then((res) =>
+      res.json()
+    );
+
+    return usersData;
+  }),
   getDetails: publicProcedure
     .input(z.object({ id: z.number() }))
     .query(async ({ input }) => {
       const userDetails: UserDetails[] = await fetch(
-        `https://635fbe57ca0fe3c21aa35cc5.mockapi.io/users/${input.id}/details`
+        `${BASE_URL}/users/${input.id}/details`
       ).then((res) => res.json());
 
       return userDetails;
@@ -56,20 +56,17 @@ export const usersRouter = router({
       input.country = truncateString(input.country, 20);
 
       // Update user basic info
-      const user = await fetch(
-        `https://635fbe57ca0fe3c21aa35cc5.mockapi.io/users/${input.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(input.basicInfo),
-        }
-      );
+      const user = await fetch(`${BASE_URL}/users/${input.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(input.basicInfo),
+      });
 
       // Update user details
       const userDetails = await fetch(
-        `https://635fbe57ca0fe3c21aa35cc5.mockapi.io/users/${input.id}/details/${input.id}`,
+        `${BASE_URL}/users/${input.id}/details/${input.id}`,
         {
           method: "PUT",
           headers: {
@@ -87,18 +84,15 @@ export const usersRouter = router({
     .input(z.object({ id: z.string() }))
     .mutation(async ({ input }) => {
       const userDetails = await fetch(
-        `https://635fbe57ca0fe3c21aa35cc5.mockapi.io/users/${input.id}/details/${input.id}`,
+        `${BASE_URL}/users/${input.id}/details/${input.id}`,
         {
           method: "DELETE",
         }
       );
 
-      const user = await fetch(
-        `https://635fbe57ca0fe3c21aa35cc5.mockapi.io/users/${input.id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const user = await fetch(`${BASE_URL}/users/${input.id}`, {
+        method: "DELETE",
+      });
 
       if (user.status === 200 && userDetails.status === 200) return true;
       return false;
