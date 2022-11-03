@@ -112,6 +112,7 @@ export default function Index() {
                   <button
                     type="button"
                     className="rounded-md border border-gray-200 bg-transparent p-2 font-semibold text-gray-200 transition duration-200 hover:bg-gray-200 hover:text-gray-800"
+                    // skipcq: JS-0417
                     onClick={handleLogin}
                   >
                     Sign in
@@ -139,6 +140,7 @@ export default function Index() {
                   <button
                     type="button"
                     className="rounded-md border border-gray-200 bg-transparent p-2 font-semibold text-gray-200 transition duration-200 hover:bg-gray-200 hover:text-gray-800"
+                    // skipcq: JS-0417
                     onClick={handleLogout}
                   >
                     Sign out
@@ -190,6 +192,7 @@ export default function Index() {
                           <div className="h-6 border-[0.5px] border-gray-300" />
                           <button
                             type="button"
+                            // skipcq: JS-0417
                             onClick={() => setModal(true)}
                             disabled={modal || mutationDelete.isLoading}
                           >
@@ -197,6 +200,7 @@ export default function Index() {
                           </button>
                           <button
                             type="button"
+                            // skipcq: JS-0417
                             onClick={handleDelete}
                             disabled={mutationDelete.isLoading}
                           >
@@ -245,7 +249,9 @@ export default function Index() {
                   maxLength={20}
                   className="h-10 w-3/4 rounded px-2 text-xl outline-none"
                   value={username}
+                  // skipcq: JS-0417
                   onChange={(e) => setUsername(e.target.value)}
+                  // skipcq: JS-0417
                   onKeyPress={(e) => {
                     if (e.key === "Enter") {
                       handleUpdate();
@@ -258,7 +264,9 @@ export default function Index() {
                   maxLength={20}
                   className="h-10 w-3/4 rounded px-2 text-xl outline-none"
                   value={country}
+                  // skipcq: JS-0417
                   onChange={(e) => setCountry(e.target.value)}
+                  // skipcq: JS-0417
                   onKeyPress={(e) => {
                     if (e.key === "Enter") {
                       handleUpdate();
@@ -271,7 +279,9 @@ export default function Index() {
                   maxLength={20}
                   className="h-10 w-3/4 rounded px-2 text-xl outline-none"
                   value={companyName}
+                  // skipcq: JS-0417
                   onChange={(e) => setcompanyName(e.target.value)}
+                  // skipcq: JS-0417
                   onKeyPress={(e) => {
                     if (e.key === "Enter") {
                       handleUpdate();
@@ -282,6 +292,7 @@ export default function Index() {
                   <button
                     type="button"
                     className="flex h-10 w-32 items-center justify-center rounded-md bg-gray-600 text-lg uppercase text-gray-200 hover:bg-gray-500"
+                    // skipcq: JS-0417
                     onClick={handleUpdate}
                     disabled={mutationUpdate.isLoading}
                   >
@@ -294,6 +305,7 @@ export default function Index() {
                   <button
                     type="button"
                     className="h-10 w-32 rounded-md border-2 border-gray-600 text-lg uppercase text-gray-600 hover:bg-gray-600 hover:text-gray-200"
+                    // skipcq: JS-0417
                     onClick={() => {
                       // Reset modal handlers states
                       setModal(false);

@@ -44,6 +44,7 @@ const Home: NextPage = () => {
                   <button
                     type="button"
                     className="rounded-md border border-gray-200 bg-transparent p-2 font-semibold text-gray-200 transition duration-200 hover:bg-gray-200 hover:text-gray-800"
+                    // skipcq: JS-0417
                     onClick={handleLogin}
                   >
                     Sign in
@@ -69,6 +70,7 @@ const Home: NextPage = () => {
                   <button
                     type="button"
                     className="rounded-md border border-gray-200 bg-transparent p-2 font-semibold text-gray-200 transition duration-200 hover:bg-gray-200 hover:text-gray-800"
+                    // skipcq: JS-0417
                     onClick={handleLogout}
                   >
                     Sign out
