@@ -138,7 +138,10 @@ const Home: NextPage = () => {
                   >
                     <li
                       key="add-user"
-                      className="nsition my-2 flex h-20 w-full border-spacing-y-32 cursor-pointer items-center justify-center gap-5 rounded-md border-2 border-dashed bg-transparent p-4 duration-100 hover:scale-105 hover:bg-gray-600"
+                      className={`my-2 flex h-20 w-full border-spacing-y-32 cursor-pointer items-center justify-center gap-5 rounded-md border-2 border-dashed bg-transparent p-4 transition duration-100 hover:scale-105 hover:bg-gray-600 ${
+                        createUserMutation.isLoading &&
+                        "pointer-events-none opacity-30"
+                      }`}
                     >
                       {createUserMutation.isLoading ? (
                         <ImSpinner2 className="animate-spin text-3xl text-gray-200" />
