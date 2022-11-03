@@ -60,7 +60,7 @@ const Home: NextPage = () => {
                 <div className="flex w-full items-center justify-end space-x-4">
                   <Image
                     className="rounded-full border border-gray-200 transition duration-200 hover:scale-105"
-                    src={session!.user!.image!}
+                    src={session?.user?.image || "_blank"}
                     width={50}
                     height={50}
                     alt={"avatar"}
@@ -89,7 +89,7 @@ const Home: NextPage = () => {
             )}
             {!isLoadingUsers && (
               <ul className="grid grid-cols-3 items-center justify-center gap-4 lg:grid-cols-4">
-                {dataUsers!.map((user) => (
+                {dataUsers?.map((user) => (
                   <Link key={user.id} href={`/getdetails/${user.id}`}>
                     <li
                       key={user.id}
