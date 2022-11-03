@@ -1,0 +1,15 @@
+version = 1
+
+exclude_patterns = [
+  ".next/**",
+  "node_modules/**"
+]
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+
+  [analyzers.meta]
+  plugins = ["react"]
+  dialect = "typescript"
+  dependency_file_paths = ["package.json", "tsconfig.json"]
