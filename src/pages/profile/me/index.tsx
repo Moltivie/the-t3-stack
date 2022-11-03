@@ -24,7 +24,7 @@ const ProfilePage = () => {
   const [modal, setModal] = useState<boolean>(false);
 
   // Modal handlers states
-  const [username, setUsername] = useState<string>(session?.user?.name!);
+  const [username, setUsername] = useState<string>("");
 
   // Update modal handlers states
   if (modal && username.trim() === "") {
@@ -43,6 +43,7 @@ const ProfilePage = () => {
     // If the user details has been modified, close the modal and refresh the page
     if (hasBeenModified) {
       setModal(false);
+      router.reload();
     }
   };
 
@@ -94,7 +95,7 @@ const ProfilePage = () => {
         </main>
       </>
     );
-  } else
+  } else {
     return (
       <>
         <Head>
@@ -250,6 +251,7 @@ const ProfilePage = () => {
         }
       </>
     );
+  }
 };
 
 export default ProfilePage;
