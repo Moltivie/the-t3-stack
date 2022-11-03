@@ -107,7 +107,7 @@ const ProfilePage = () => {
           <section className="mx-auto flex h-screen max-w-7xl flex-col items-center justify-center">
             <header className="grid w-full grid-cols-3 items-center justify-center py-10">
               <h1 className="col-start-2 text-center text-4xl font-bold uppercase tracking-wider text-gray-200">
-                User Details
+                My profile
               </h1>
               <div className="flex w-full items-center justify-end space-x-4">
                 <Link href="/profile/me">
