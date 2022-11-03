@@ -106,7 +106,7 @@ export const usersRouter = router({
       },
     })
       .then(async (res) => {
-        const user: User = JSON.parse(await res.json());
+        const user: User = await res.json();
         return { res, user };
       })
       .then((data) => data);
