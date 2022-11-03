@@ -9,9 +9,18 @@ import { prisma } from "../../../server/db/client";
 export const authOptions: NextAuthOptions = {
   // Include user.id on session
   callbacks: {
-    session({ session, user }) {
+    async session({ session, user }) {
       if (session.user) {
         session.user.id = user.id;
+
+        // Get the user's role from the database and add it to the session
+        // This is used to determine if the user is an admin or not
+        const userRole = await prisma.user.findUnique({
+          where: { id: user.id },
+          select: { role: true },
+        });
+
+        session.user.role = userRole!.role;
       }
       return session;
     },
