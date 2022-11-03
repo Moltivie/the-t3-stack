@@ -65,7 +65,7 @@ export default function Index() {
   };
 
   // Get the mutation to delete the user
-  const mutationDelete = trpc.users.delete.useMutation();
+  const mutationDelete = trpc.users.deleteUser.useMutation();
 
   const handleDelete = async () => {
     // Delete the user

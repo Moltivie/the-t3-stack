@@ -18,7 +18,7 @@ const Home: NextPage = () => {
     trpc.users.getAll.useQuery();
 
   // Get the mutation to create a user
-  const createUserMutation = trpc.users.create.useMutation();
+  const createUserMutation = trpc.users.createUser.useMutation();
 
   const handleCreate = async () => {
     // Create a user
