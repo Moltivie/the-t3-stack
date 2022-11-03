@@ -6,6 +6,8 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { trpc } from "../utils/trpc";
 
+import { AiOutlinePlus } from "react-icons/ai";
+
 const Home: NextPage = () => {
   const { data: dataUsers, isLoading: isLoadingUsers } =
     trpc.users.getAll.useQuery();
@@ -110,6 +112,14 @@ const Home: NextPage = () => {
                     </li>
                   </Link>
                 ))}
+                {session && (session.user?.role || 1) > 1 && (
+                  <li
+                    key="add-user"
+                    className="nsition my-2 flex h-20 w-full border-spacing-y-32 cursor-pointer items-center justify-center gap-5 rounded-md border-2 border-dashed bg-transparent p-4 duration-100 hover:scale-105 hover:bg-gray-600"
+                  >
+                    <AiOutlinePlus className="text-3xl text-gray-200" />
+                  </li>
+                )}
               </ul>
             )}
           </div>
