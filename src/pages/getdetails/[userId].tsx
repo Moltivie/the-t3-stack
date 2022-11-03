@@ -236,9 +236,18 @@ export default function Index() {
             </Link>
           )}
         </section>
-        <footer className="absolute bottom-0 w-full p-4">
-          <p className="flex justify-center capitalize text-gray-200">
+        <footer className="absolute bottom-0 grid w-full grid-cols-3 p-4">
+          <p className="col-start-2 flex justify-center capitalize text-gray-200">
             Made with ❤️ by Aiman El Aaqdi
+          </p>
+          <p className="mr-24 flex justify-end text-gray-200">
+            Source available on
+            <Link
+              href="https://github.com/Moltivie/the-t3-stack"
+              className="text-blue-400"
+            >
+              &nbsp;GitHub
+            </Link>
           </p>
         </footer>
       </main>

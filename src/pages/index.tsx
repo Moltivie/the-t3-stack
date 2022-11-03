@@ -155,9 +155,23 @@ const Home: NextPage = () => {
             )}
           </div>
         </section>
-        <footer className="mt-10 p-4">
-          <p className="flex justify-center capitalize text-gray-200">
+        <footer
+          className={`
+            ${
+              !isLoadingUsers ? "mt-10 " : "absolute bottom-0 w-full "
+            } grid grid-cols-3 p-4`}
+        >
+          <p className="col-start-2 flex justify-center capitalize text-gray-200">
             Made with ❤️ by Aiman El Aaqdi
+          </p>
+          <p className="mr-24 flex justify-end text-gray-200">
+            Source available on
+            <Link
+              href="https://github.com/Moltivie/the-t3-stack"
+              className="text-blue-400"
+            >
+              &nbsp;GitHub
+            </Link>
           </p>
         </footer>
       </main>
