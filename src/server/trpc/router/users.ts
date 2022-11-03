@@ -80,7 +80,7 @@ export const usersRouter = router({
       return false;
     }),
 
-  delete: protectedProcedure
+  deleteUser: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ input }) => {
       const userDetails = await fetch(
@@ -98,7 +98,7 @@ export const usersRouter = router({
       return false;
     }),
 
-  create: protectedProcedure.mutation(async () => {
+  createUser: protectedProcedure.mutation(async () => {
     const createUserPromise = await fetch(`${BASE_URL}/users`, {
       method: "POST",
       headers: {
