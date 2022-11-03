@@ -97,4 +97,30 @@ export const usersRouter = router({
       if (user.status === 200 && userDetails.status === 200) return true;
       return false;
     }),
+
+  create: protectedProcedure.mutation(async () => {
+    const createUserPromise = await fetch(`${BASE_URL}/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(async (res) => {
+        const user: User = JSON.parse(await res.json());
+        return { res, user };
+      })
+      .then((data) => data);
+
+    const { res, user } = createUserPromise;
+
+    const userDetails = await fetch(`${BASE_URL}/users/${user.id}/details`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (res.status === 201 && userDetails.status === 201) return true;
+    return false;
+  }),
 });
