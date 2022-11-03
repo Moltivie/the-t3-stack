@@ -15,12 +15,12 @@ const Home: NextPage = () => {
 
   // Handle the login button
   const handleLogin = async () => {
-    signIn("github");
+    await signIn("github");
   };
 
   // Handle the logout button
   const handleLogout = async () => {
-    signOut();
+    await signOut();
   };
 
   return (
