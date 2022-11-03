@@ -1,7 +1,6 @@
 # T3 CRUD APP
 
-| [![DeepSource](https://deepsource.io/gh/Moltivie/the-t3-stack.svg/?label=active+issues&show_trend=true&token=Xm8OI4BG1FSCgLi7j-f3PeYW)](https://deepsource.io/gh/Moltivie/the-t3-stack/?ref=repository-badge) | [![Known Vulnerabilities](https://snyk.io/test/github/Moltivie/the-t3-stack/badge.svg)](https://snyk.io/test/github/Moltivie/the-t3-stack) |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------: |
+[![DeepSource](https://deepsource.io/gh/Moltivie/the-t3-stack.svg/?label=active+issues&show_trend=true&token=Xm8OI4BG1FSCgLi7j-f3PeYW)](https://deepsource.io/gh/Moltivie/the-t3-stack/?ref=repository-badge) [![Known Vulnerabilities](https://snyk.io/test/github/Moltivie/the-t3-stack/badge.svg)](https://snyk.io/test/github/Moltivie/the-t3-stack)
 
 <br>
 > For the picky ones, everything inside the repository is free to use.
