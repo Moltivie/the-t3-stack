@@ -11,6 +11,7 @@ export default createNextApiHandler({
   onError:
     env.NODE_ENV === "development"
       ? ({ path, error }) => {
+          // skipcq: JS-0002
           console.error(`❌ tRPC failed on ${path}: ${error}`);
         }
       : undefined,
