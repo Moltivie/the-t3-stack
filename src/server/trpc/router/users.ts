@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { truncateString } from "../../../utils/functions";
-import { publicProcedure, router } from "../trpc";
+import { protectedProcedure, publicProcedure, router } from "../trpc";
 
 type User = {
   id: number;
@@ -36,7 +36,7 @@ export const usersRouter = router({
       return userDetails;
     }),
 
-  updateDetails: publicProcedure
+  updateDetails: protectedProcedure
     .input(
       z.object({
         id: z.string(),
@@ -80,7 +80,7 @@ export const usersRouter = router({
       return false;
     }),
 
-  delete: publicProcedure
+  delete: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ input }) => {
       const userDetails = await fetch(
