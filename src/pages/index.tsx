@@ -7,10 +7,28 @@ import Image from "next/image";
 import { trpc } from "../utils/trpc";
 
 import { AiOutlinePlus } from "react-icons/ai";
+import { ImSpinner2 } from "react-icons/im";
+
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
+  const router = useRouter();
+
   const { data: dataUsers, isLoading: isLoadingUsers } =
     trpc.users.getAll.useQuery();
+
+  // Get the mutation to create a user
+  const createUserMutation = trpc.users.create.useMutation();
+
+  const handleCreate = async () => {
+    // Create a user
+    const hasBeenCreated = await createUserMutation.mutateAsync();
+
+    // If the user has been created, refresh the page
+    if (hasBeenCreated) {
+      router.reload();
+    }
+  };
 
   // Handle the session
   const { data: session } = useSession();
@@ -113,12 +131,22 @@ const Home: NextPage = () => {
                   </Link>
                 ))}
                 {session && (session.user?.role || 1) > 1 && (
-                  <li
-                    key="add-user"
-                    className="nsition my-2 flex h-20 w-full border-spacing-y-32 cursor-pointer items-center justify-center gap-5 rounded-md border-2 border-dashed bg-transparent p-4 duration-100 hover:scale-105 hover:bg-gray-600"
+                  <button
+                    type="button"
+                    onClick={handleCreate}
+                    disabled={createUserMutation.isLoading}
                   >
-                    <AiOutlinePlus className="text-3xl text-gray-200" />
-                  </li>
+                    <li
+                      key="add-user"
+                      className="nsition my-2 flex h-20 w-full border-spacing-y-32 cursor-pointer items-center justify-center gap-5 rounded-md border-2 border-dashed bg-transparent p-4 duration-100 hover:scale-105 hover:bg-gray-600"
+                    >
+                      {createUserMutation.isLoading ? (
+                        <ImSpinner2 className="animate-spin text-3xl text-gray-200" />
+                      ) : (
+                        <AiOutlinePlus className="text-3xl text-gray-200" />
+                      )}
+                    </li>
+                  </button>
                 )}
               </ul>
             )}
