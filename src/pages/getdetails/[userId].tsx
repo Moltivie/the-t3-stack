@@ -127,13 +127,15 @@ export default function Index() {
               ) : (
                 // If the user is logged in, show the logout button
                 <div className="flex w-full items-center justify-end space-x-4">
-                  <Image
-                    className="rounded-full border border-gray-200 transition duration-200 hover:scale-105"
-                    src={session?.user?.image || "_blank"}
-                    width={50}
-                    height={50}
-                    alt={"avatar"}
-                  />
+                  <Link href="/profile/me">
+                    <Image
+                      className="cursor-pointer rounded-full border border-gray-200 transition duration-200 hover:scale-105"
+                      src={session?.user?.image || "_blank"}
+                      width={50}
+                      height={50}
+                      alt={"avatar"}
+                    />
+                  </Link>
                   <h3 className="text-gray-200">
                     {session.user?.name || "No name"}
                   </h3>
