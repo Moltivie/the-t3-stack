@@ -2,9 +2,9 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 
+import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { trpc } from "../utils/trpc";
-import { signIn, signOut, useSession } from "next-auth/react";
 
 const Home: NextPage = () => {
   const { data: dataUsers, isLoading: isLoadingUsers } =
