@@ -123,4 +123,23 @@ export const usersRouter = router({
     if (res.status === 201 && userDetails.status === 201) return true;
     return false;
   }),
+
+  modifyUserProfile: protectedProcedure
+    .input(
+      z.object({
+        name: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      // Update the new username on the prisma database using the ctx
+      const user = await ctx.prisma.user.update({
+        where: {
+          email: ctx.session.user.email!,
+        },
+        data: {
+          name: input.name,
+        },
+      });
+      return user;
+    }),
 });
