@@ -187,7 +187,7 @@ export default function Index() {
                     </p>
                     {
                       // If the user is logged in and is has the rights, show the edit and delete buttons
-                      session && (session.user?.role || 1 > 1) ? (
+                      session && (session.user?.role || 1) > 1 ? (
                         <>
                           <div className="h-6 border-[0.5px] border-gray-300" />
                           <button
@@ -237,8 +237,8 @@ export default function Index() {
       </main>
       {
         // Modal
-        modal && session && (session.user?.role || 1 > 1) && (
-          <div className="absolute top-1/2 left-1/2 z-10 h-screen w-screen -translate-x-1/2 -translate-y-1/2 transform bg-black/60">
+        modal && session && (session.user?.role || 1) > 1 && (
+          <div className="fixed top-1/2 left-1/2 z-10 h-screen w-screen -translate-x-1/2 -translate-y-1/2 transform bg-black/60">
             <div className="flex h-full w-full items-center justify-center">
               <div className="flex h-fit w-96 flex-col items-center gap-y-4 rounded bg-gray-200 p-4 text-gray-600">
                 <h3 className="mt-10 text-3xl font-medium uppercase">
