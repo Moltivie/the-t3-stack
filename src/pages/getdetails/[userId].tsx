@@ -137,6 +137,13 @@ export default function Index() {
                   <h3 className="text-gray-200">
                     {session.user?.name || "No name"}
                   </h3>
+                  {process.env.NEXT_PUBLIC_NODE_ENV === "development" && (
+                    <p className="text-yellow-600">
+                      {session.user?.role
+                        ? "Role: " + session.user?.role
+                        : "No role"}
+                    </p>
+                  )}
                   <button
                     type="button"
                     className="rounded-md border border-gray-200 bg-transparent p-2 font-semibold text-gray-200 transition duration-200 hover:bg-gray-200 hover:text-gray-800"
