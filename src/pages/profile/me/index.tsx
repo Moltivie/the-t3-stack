@@ -218,7 +218,7 @@ const ProfilePage = () => {
                   </h3>
                   <input
                     type="text"
-                    maxLength={20}
+                    maxLength={10}
                     className="h-10 w-3/4 rounded px-2 text-xl outline-none"
                     value={username}
                     // skipcq: JS-0417
