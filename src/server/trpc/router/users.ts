@@ -131,6 +131,9 @@ export const usersRouter = router({
       })
     )
     .mutation(async ({ input, ctx }) => {
+      // Truncate the name on the backend also
+      input.name = truncateString(input.name, 10);
+
       // Update the new username on the prisma database using the ctx
       const user = await ctx.prisma.user.update({
         where: {
