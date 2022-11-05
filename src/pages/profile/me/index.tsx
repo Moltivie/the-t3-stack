@@ -40,14 +40,14 @@ const ProfilePage = () => {
       name: username,
     });
 
-    // If the user details has been modified, close the modal and refresh the page
+    // If the user details have been modified, close the modal and refresh the page
     if (hasBeenModified) {
       setModal(false);
       router.reload();
     }
   };
 
-  // If there is no session, show the redirecting component then redirect to homepage
+  // If there is no session, show the redirecting component for two seconds then redirect to homepage
   if (status === "unauthenticated") {
     setTimeout(() => {
       router.push("/");

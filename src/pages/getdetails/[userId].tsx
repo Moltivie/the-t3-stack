@@ -58,7 +58,7 @@ export default function Index() {
       },
     });
 
-    // If the user details has been modified, close the modal and refresh the page
+    // If the user details have been modified, close the modal and refresh the page
     if (hasBeenModified) {
       router.reload();
     }
