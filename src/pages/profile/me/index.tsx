@@ -159,7 +159,7 @@ const ProfilePage = () => {
                       height={50}
                       alt={`avatar-${session?.user?.id || 0}`}
                     />
-                    <p className="w-full whitespace-nowrap text-center text-2xl text-gray-200">
+                    <p className="w-full whitespace-nowrap text-center text-2xl text-gray-400">
                       {session?.user?.name || "No name"}
                     </p>
                     <div className="h-6 border-[0.5px] border-gray-300" />

@@ -183,7 +183,7 @@ export default function Index() {
                       height={50}
                       alt={`avatar-${dataUserDetails?.[0]?.id || 0}`}
                     />
-                    <p className="w-full whitespace-nowrap text-center text-2xl text-gray-200">
+                    <p className="w-full whitespace-nowrap text-center text-2xl text-gray-400">
                       {dataUserDetails?.[0]?.basicInfo.name || "No name"}
                     </p>
                     <div className="h-6 border-[0.5px] border-gray-300" />
