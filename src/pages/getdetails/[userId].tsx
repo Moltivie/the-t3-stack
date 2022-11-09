@@ -75,7 +75,7 @@ export default function Index() {
 
     // If the user has been deleted, redirect to the home page
     if (hasBeenDeleted) {
-      router.push("/");
+      router.push("/users");
     }
   };
 
