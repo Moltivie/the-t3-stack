@@ -1,6 +1,11 @@
 import { publicProcedure, router } from "../trpc";
 
-export const registerModeratorRouter = router({
+export const moderatorRouter = router({
+  getAllModerators: publicProcedure.query(async ({ ctx }) => {
+    const moderators = await ctx.prisma.moderator.findMany();
+    return moderators;
+  }),
+
   checkUser: publicProcedure.query(async ({ ctx }) => {
     const hasalredyRegistered = await ctx.prisma.moderator.findFirst({
       where: {
@@ -10,6 +15,7 @@ export const registerModeratorRouter = router({
 
     return hasalredyRegistered;
   }),
+
   registerUser: publicProcedure.mutation(async ({ ctx }) => {
     const updateModerator = await ctx.prisma.moderator.upsert({
       create: {
