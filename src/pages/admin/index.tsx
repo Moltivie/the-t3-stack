@@ -96,7 +96,10 @@ const AdminIndex: NextPage = () => {
                 {!moderatorsisLoading ? (
                   <div className="flex flex-col space-y-4">
                     {moderators?.map((moderator) => (
-                      <div className="flex flex-col space-y-2">
+                      <div
+                        key={moderator.id}
+                        className="flex flex-col space-y-2"
+                      >
                         <div className="flex items-center space-x-2">
                           <h3 className="text-gray-200">{moderator.id}</h3>
                         </div>
