@@ -3,11 +3,14 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { ImSpinner2 } from "react-icons/im";
 import { IoIosArrowBack } from "react-icons/io";
 import { trpc } from "../../utils/trpc";
 
 const CandidateModerator: NextPage = () => {
+  const router = useRouter();
+
   // Handle the session
   const { data: session, status } = useSession();
 
@@ -28,6 +31,9 @@ const CandidateModerator: NextPage = () => {
   // Handle the submit
   const handleSubmit = async () => {
     await mutationRegister.mutateAsync();
+
+    // Reload the page
+    router.reload();
   };
 
   if (status === "loading") {
