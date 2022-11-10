@@ -98,7 +98,7 @@ const AdminIndex: NextPage = () => {
                     {moderators?.map((moderator) => (
                       <div className="flex flex-col space-y-2">
                         <div className="flex items-center space-x-2">
-                          <h3 className="text-gray-200">{moderator.}</h3>
+                          <h3 className="text-gray-200">{moderator.id}</h3>
                         </div>
                         <div className="flex items-center space-x-2">
                           <h3 className="text-gray-200">{moderator.status}</h3>
