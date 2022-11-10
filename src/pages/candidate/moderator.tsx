@@ -168,7 +168,7 @@ const CandidateModerator: NextPage = () => {
                 ) : (
                   <div className="mt-24 flex h-full w-full flex-col items-center justify-center space-x-4 text-gray-200">
                     <h3 className="mb-10 text-4xl">
-                      Your candidature's status:
+                      Your candidature&apos;s status:
                     </h3>
                     <div className="flex items-center space-x-2 rounded-md bg-transparent p-2">
                       <div
