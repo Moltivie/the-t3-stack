@@ -106,7 +106,10 @@ const AdminIndex: NextPage = () => {
                 {!moderatorsisLoading ? (
                   <>
                     {moderators?.map((moderator) => (
-                      <div className="grid grid-cols-3 items-center justify-center rounded-md bg-gray-600 py-4 text-xl text-gray-200 shadow-md">
+                      <div
+                        key={moderator.id}
+                        className="grid grid-cols-3 items-center justify-center rounded-md bg-gray-600 py-4 text-xl text-gray-200 shadow-md"
+                      >
                         <div className="flex items-center justify-center space-x-5">
                           <Image
                             className="rounded-full border border-gray-200"
