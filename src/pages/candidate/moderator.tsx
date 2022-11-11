@@ -172,13 +172,13 @@ const CandidateModerator: NextPage = () => {
                     </form>
                   </div>
                 ) : (
-                  <div className="mt-24 flex h-full w-full flex-col items-center justify-center space-x-4 text-gray-200">
-                    <h3 className="mb-10 text-4xl">
+                  <div className="mt-24 flex h-full w-full items-center justify-center space-x-4 text-gray-200">
+                    <h3 className="flex items-center justify-center text-4xl">
                       Your candidature&apos;s status:
                     </h3>
-                    <div className="flex items-center space-x-2 rounded-md bg-transparent p-2">
+                    <div className="flex items-center justify-center space-x-3">
                       <div
-                        className={`m-1 h-2 w-2 animate-ping rounded-full ${
+                        className={`h-2 w-2 animate-ping rounded-full ${
                           userIsRegistered.status == 1
                             ? "bg-orange-400"
                             : userIsRegistered.status == 2
@@ -186,7 +186,7 @@ const CandidateModerator: NextPage = () => {
                             : "bg-red-400"
                         } `}
                       />
-                      <p className="text-xl text-gray-200">
+                      <p className="flex items-end text-2xl text-gray-200">
                         {userIsRegistered.status == 1
                           ? "Pending"
                           : userIsRegistered.status == 2
