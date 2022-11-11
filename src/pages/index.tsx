@@ -55,6 +55,16 @@ const Index: NextPage = () => {
               ) : (
                 // If the user is logged in, show the logout button
                 <div className="flex w-full items-center justify-end space-x-4">
+                  {(session?.user?.role || 1) >= 2 && (
+                    <Link href="/admin">
+                      <button
+                        type="button"
+                        className="mr-3 rounded-md border bg-red-500 p-2 font-semibold text-gray-200 transition duration-200 hover:border-gray-800 hover:bg-red-200 hover:text-gray-800"
+                      >
+                        Admin
+                      </button>
+                    </Link>
+                  )}
                   <Link href="/profile/me">
                     <Image
                       className="cursor-pointer rounded-full border border-gray-200 transition duration-200 hover:scale-105"
