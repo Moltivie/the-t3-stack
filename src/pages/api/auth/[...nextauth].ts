@@ -33,6 +33,10 @@ export const authOptions: NextAuthOptions = {
       clientSecret: env.GITHUB_CLIENT_SECRET,
     }),
   ],
+  session: {
+    maxAge: 60 * 60 * 24 * 1, // 1 day
+    updateAge: 60 * 60 * 12, // 12 hours
+  },
 };
 
 export default NextAuth(authOptions);
