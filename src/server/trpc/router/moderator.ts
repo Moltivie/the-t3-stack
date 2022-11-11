@@ -1,6 +1,15 @@
-import { publicProcedure, router } from "../trpc";
+import { protectedProcedure, publicProcedure, router } from "../trpc";
 
 export const moderatorRouter = router({
+  getSingleUser: protectedProcedure.query(async ({ ctx }) => {
+    const user = await ctx.prisma.moderator.findUnique({
+      where: {
+        userId: ctx.session.user.id,
+      },
+    });
+    return user;
+  }),
+
   getAllModerators: publicProcedure.query(async ({ ctx }) => {
     const moderators = await ctx.prisma.moderator.findMany({
       include: {
