@@ -2,7 +2,11 @@ import { publicProcedure, router } from "../trpc";
 
 export const moderatorRouter = router({
   getAllModerators: publicProcedure.query(async ({ ctx }) => {
-    const moderators = await ctx.prisma.moderator.findMany();
+    const moderators = await ctx.prisma.moderator.findMany({
+      include: {
+        user: true,
+      },
+    });
     return moderators;
   }),
 
