@@ -19,7 +19,6 @@ const AdminIndex: NextPage = () => {
     await signOut();
   };
 
-  const mutationRegister = trpc.registerModerator.registerUser.useMutation();
   const { data: moderators, isLoading: moderatorsisLoading } =
     trpc.registerModerator.getAllModerators.useQuery();
 
@@ -83,24 +82,48 @@ const AdminIndex: NextPage = () => {
                 </button>
               </div>
             </header>
-            <div className="flex flex-col">
-              <div className="">
+            <div className="flex w-full flex-col items-center justify-center">
+              <div className="flex items-center justify-center">
                 {!moderatorsisLoading ? (
-                  <div className="flex flex-col space-y-4">
+                  <>
                     {moderators?.map((moderator) => (
-                      <div
-                        key={moderator.id}
-                        className="flex flex-col space-y-2"
-                      >
-                        <div className="flex items-center space-x-2">
-                          <h3 className="text-gray-200">{moderator.id}</h3>
+                      <div className="grid grid-cols-3 items-center justify-center rounded-md bg-gray-600 py-4 text-xl text-gray-200 shadow-md">
+                        <div className="flex items-center justify-center space-x-5">
+                          <Image
+                            className="rounded-full border border-gray-200"
+                            src={moderator.user.image || "_blank"}
+                            width={40}
+                            height={40}
+                            alt={"avatar"}
+                          />
+                          <h3 className="text-gray-200">
+                            {moderator.user.name}
+                          </h3>
                         </div>
-                        <div className="flex items-center space-x-2">
-                          <h3 className="text-gray-200">{moderator.status}</h3>
+                        <div className="flex items-center justify-center">
+                          {moderator.user.email}
+                        </div>
+                        <div className="flex items-center justify-center space-x-2">
+                          <div
+                            className={`m-1 h-2 w-2 animate-ping rounded-full ${
+                              moderator.status == 1
+                                ? "bg-orange-400"
+                                : moderator.status == 2
+                                ? "bg-green-400"
+                                : "bg-red-400"
+                            } `}
+                          />
+                          <p className="text-gray-200">
+                            {moderator.status == 1
+                              ? "Pending"
+                              : moderator.status == 2
+                              ? "Accepted"
+                              : "Rejected"}
+                          </p>
                         </div>
                       </div>
                     ))}
-                  </div>
+                  </>
                 ) : (
                   <div className="flex items-center space-x-2">
                     <ImSpinner2 className="animate-spin text-gray-200" />
@@ -108,7 +131,7 @@ const AdminIndex: NextPage = () => {
                   </div>
                 )}
               </div>
-              <Link href="/" className="h-fit w-fit rounded-full">
+              <Link href="/" className="mt-10 h-fit w-fit rounded-full">
                 <button
                   type="button"
                   className="group flex items-center justify-center rounded-full bg-gray-400 p-5 text-xl uppercase text-gray-600 hover:bg-gray-500"
