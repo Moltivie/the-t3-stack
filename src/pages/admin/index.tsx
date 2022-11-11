@@ -23,14 +23,6 @@ const AdminIndex: NextPage = () => {
   const { data: moderators, isLoading: moderatorsisLoading } =
     trpc.registerModerator.getAllModerators.useQuery();
 
-  // Handle the submit
-  const handleSubmit = async () => {
-    await mutationRegister.mutateAsync();
-
-    // Reload the page
-    router.reload();
-  };
-
   if (status === "unauthenticated") {
     router.push("/");
     return <div></div>;
@@ -116,10 +108,10 @@ const AdminIndex: NextPage = () => {
                   </div>
                 )}
               </div>
-              <Link href="/">
+              <Link href="/" className="h-fit w-fit rounded-full">
                 <button
                   type="button"
-                  className=" group mt-10 flex items-center justify-center rounded-full bg-gray-400 p-5 text-xl uppercase text-gray-600 hover:bg-gray-500"
+                  className="group flex items-center justify-center rounded-full bg-gray-400 p-5 text-xl uppercase text-gray-600 hover:bg-gray-500"
                 >
                   <IoIosArrowBack className="h-10 w-10 group-hover:text-gray-200" />
                 </button>
