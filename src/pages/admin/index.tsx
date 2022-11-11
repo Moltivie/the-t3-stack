@@ -22,10 +22,13 @@ const AdminIndex: NextPage = () => {
   const { data: moderators, isLoading: moderatorsisLoading } =
     trpc.registerModerator.getAllModerators.useQuery();
 
+  const { data: singleUser, isLoading: singleUserisLoading } =
+    trpc.registerModerator.getSingleUser.useQuery();
+
   if (status === "unauthenticated") {
     router.push("/");
     return <div></div>;
-  } else if (status === "loading") {
+  } else if (status === "loading" || singleUserisLoading) {
     return (
       <>
         <Head>
@@ -46,7 +49,13 @@ const AdminIndex: NextPage = () => {
         </main>
       </>
     );
-  } else {
+  }
+
+  if (
+    !singleUserisLoading &&
+    (singleUser?.rank || 1 >= 2) && // 1 is the rank of moderators. 2 is the rank of admins
+    singleUser?.status === 2 // The user has been validated by an admin
+  ) {
     return (
       <>
         <Head>
@@ -62,6 +71,16 @@ const AdminIndex: NextPage = () => {
                 Admin Dashboard
               </h1>
               <div className="flex w-full items-center justify-end space-x-4">
+                {(session?.user?.role || 1) >= 2 && (
+                  <Link href="/admin">
+                    <button
+                      type="button"
+                      className="mr-3 rounded-md border bg-red-500 p-2 font-semibold text-gray-200 transition duration-200 hover:border-gray-800 hover:bg-red-200 hover:text-gray-800"
+                    >
+                      Admin
+                    </button>
+                  </Link>
+                )}
                 <Link href="/profile/me">
                   <Image
                     className="cursor-pointer rounded-full border border-gray-200 transition duration-200 hover:scale-105"
@@ -158,6 +177,8 @@ const AdminIndex: NextPage = () => {
         </main>
       </>
     );
+  } else {
+    return <div>test</div>;
   }
 };
 
