@@ -134,6 +134,13 @@ const Index: NextPage = () => {
                 </div>
               </div>
             </div>
+            <div className="col-span-2 mx-auto mt-5 flex w-full max-w-5xl justify-center">
+              <Link href="/users">
+                <button className="rounded-md border border-gray-200 bg-transparent px-8 py-5 text-4xl font-semibold text-gray-200 transition duration-200 hover:bg-gray-200 hover:text-gray-800">
+                  Visit the users!
+                </button>
+              </Link>
+            </div>
           </div>
         </section>
         <footer className="absolute bottom-0 grid w-full grid-cols-3 p-4">
